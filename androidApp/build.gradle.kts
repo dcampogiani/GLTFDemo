@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-android-extensions")
+    id("kotlin-android")
 }
 group = "com.danielecampogiani.gltfdemo"
 version = "1.0-SNAPSHOT"
@@ -20,6 +21,11 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.0.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.recyclerview:recyclerview:1.1.0")
+
+    implementation("com.google.android.filament:filament-android:1.9.3")
+    implementation("com.google.android.filament:gltfio-android:1.9.3")
+    implementation("com.google.android.filament:filament-utils-android:1.9.3")
+
     implementation("io.coil-kt:coil:1.0.0-rc3")
 }
 android {
