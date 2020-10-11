@@ -1,7 +1,6 @@
 package com.danielecampogiani.gltfdemo.androidApp
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -17,15 +16,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val adapter = Adapter {
-
-            val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
-            sceneViewerIntent.data =
-                Uri.parse("https://arvr.google.com/scene-viewer/1.0?file=${it.url}")
-            sceneViewerIntent.setPackage("com.google.android.googlequicksearchbox")
-            startActivity(sceneViewerIntent)
+            val intent = Intent(this, RenderActivity::class.java)
+            intent.apply { putExtra(RenderActivity.URL, it.url) }
+            startActivity(intent)
         }
 
-        val list = findViewById<RecyclerView>(R.id.list).apply { setAdapter(adapter) }
+        findViewById<RecyclerView>(R.id.list).apply { setAdapter(adapter) }
 
         viewModel.state.observe(this) {
             adapter.submitList(it)
